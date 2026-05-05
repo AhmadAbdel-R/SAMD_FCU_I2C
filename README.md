@@ -1,19 +1,24 @@
 # SAMD FCU I2C
 
-SAMD21 I2C slave firmware scaffold intended for FCU-side co-processor telemetry and control work.
+SAMD21-side firmware for FCU helper communication over I2C.
 
-Active PlatformIO project path:
+## Active Firmware Folder
 
 - `SAMD21_I2C_SLAVE/`
 
-## Scope
+## Current Functionality
 
-- Establish SAMD21 firmware project baseline
-- Implement stable I2C slave responses for FCU integration
-- Prepare interface for ESP32 <-> SAMD communication tests
+- Runs as I2C slave at address `0x08`
+- register-style request flow
+- ping register returns `0xA5`
+- version and uptime registers available
+
+## Why It Exists
+
+This repo is used to stabilize ESP32 <-> SAMD communication before bigger FCU integration.
 
 ## Build
 
 1. Open `SAMD21_I2C_SLAVE` in PlatformIO.
-2. Build and upload to target SAMD board.
-3. Validate I2C transactions from host MCU.
+2. Build and flash target SAMD21 board.
+3. Query the slave from master firmware for ping/version/uptime.
